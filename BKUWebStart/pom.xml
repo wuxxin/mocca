@@ -108,10 +108,10 @@
               <mainClass>at.gv.egiz.bku.webstart.Launcher</mainClass>
             </jnlp>
             <sign>
-              <alias>test-applet signer</alias>
-              <keystore>${project.basedir}/src/main/jnlp/keystore.ks</keystore>
-              <storepass>storepass</storepass>
-              <keypass>keypass</keypass>
+              <keystore>${ks-file}</keystore>
+              <alias>a-sit-3</alias>
+              <storepass>${ks-pass}</storepass>
+              <keypass>${ks-pass}</keypass>
               <verify>true</verify>
               <keystoreConfig>
                 <delete>false</delete>
@@ -361,6 +361,11 @@
       <groupId>iaik</groupId>
       <artifactId>iaik_jce_full_signed</artifactId>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>at.gv.egiz</groupId>
+      <artifactId>utils</artifactId>
+      <version>${project.parent.version}</version>
     </dependency>
     
     <!-- Jetty 6.1.15+ required, see
