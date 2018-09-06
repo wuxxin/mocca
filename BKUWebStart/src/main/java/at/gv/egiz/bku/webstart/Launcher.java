@@ -26,6 +26,7 @@ package at.gv.egiz.bku.webstart;
 
 import at.gv.egiz.bku.webstart.autostart.Autostart;
 import at.gv.egiz.bku.webstart.gui.StatusNotifier;
+import at.gv.egiz.upater.MoccaUpdater;
 import at.gv.egiz.bku.webstart.gui.BKUControllerInterface;
 import at.gv.egiz.bku.webstart.gui.MOCCAIcon;
 import iaik.asn1.CodingException;
@@ -164,6 +165,7 @@ public class Launcher implements BKUControllerInterface {
 		}
 		try {
 			startServer();
+			checkUpdate();
 			initFinished();
 		} catch (BindException ex) {
 			log.error("Failed to launch server, " + ex.getMessage(), ex);
@@ -183,6 +185,19 @@ public class Launcher implements BKUControllerInterface {
 			status.error(StatusNotifier.ERROR_START);
 			throw ex;
 		}
+	}
+	
+	private void checkUpdate() {
+		  new Thread(new Runnable() {
+		        public void run(){
+		        	try {
+			        	MoccaUpdater updater = new MoccaUpdater(version);
+			        	updater.run();
+		        	}catch (Exception e) {
+						log.error(e.getMessage());
+					}
+		        }
+		    }).start();
 	}
 
 	private void browse(URL url) throws IOException, URISyntaxException {
