@@ -54,7 +54,7 @@ public class NewVersionDialog extends JDialog {
 	public NewVersionDialog(String version) throws IOException {
 		setTitle("New Version Available!");
 		setResizable(false);
-		setBounds(100, 100, 330, 180);
+		setBounds(100, 100, 375, 180);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -63,12 +63,12 @@ public class NewVersionDialog extends JDialog {
 		ImageIcon icon = new ImageIcon(myPicture.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
 		{
 			JLabel lblNewVersion = new JLabel("New Mocca Version " + version + " available.");
-			lblNewVersion.setBounds(76, 36, 228, 27);
+			lblNewVersion.setBounds(76, 36, 283, 27);
 			contentPanel.add(lblNewVersion);
 		}
 		{
 			JLabel lblNewLabel = new JLabel("Open download page now?");
-			lblNewLabel.setBounds(76, 55, 186, 27);
+			lblNewLabel.setBounds(76, 55, 283, 27);
 			contentPanel.add(lblNewLabel);
 		}
 		{
