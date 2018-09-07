@@ -22,6 +22,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URLClassLoader;
+import java.text.MessageFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 
@@ -34,6 +38,17 @@ public class NewVersionDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private final Logger log = LoggerFactory.getLogger(NewVersionDialog.class);
 
+	
+	private Locale getCurrenLocale() {
+		
+		String language = Locale.getDefault().getLanguage(); 
+		if (language.contains("en")) {
+			return Locale.ENGLISH;
+		}
+		
+		return Locale.GERMAN;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +67,12 @@ public class NewVersionDialog extends JDialog {
 	 * @throws IOException 
 	 */
 	public NewVersionDialog(String version) throws IOException {
-		setTitle("New Version Available!");
+		
+		 ResourceBundle bundle = ResourceBundle.getBundle("at/gv/egiz/updater/Messages", getCurrenLocale());
+		 System.out.println(bundle.getString("title"));
+		 
+		
+		setTitle(bundle.getString("title"));
 		setResizable(false);
 		setBounds(100, 100, 375, 180);
 		getContentPane().setLayout(new BorderLayout());
@@ -62,12 +82,14 @@ public class NewVersionDialog extends JDialog {
 		BufferedImage myPicture = ImageIO.read(getClass().getResource("/at/gv/egiz/updater/information-icon.png"));
 		ImageIcon icon = new ImageIcon(myPicture.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
 		{
-			JLabel lblNewVersion = new JLabel("New Mocca Version " + version + " available.");
+			String pattern = bundle.getString("mocca.version");
+			String message = MessageFormat.format(pattern, version);
+			JLabel lblNewVersion = new JLabel(message);
 			lblNewVersion.setBounds(76, 36, 283, 27);
 			contentPanel.add(lblNewVersion);
 		}
 		{
-			JLabel lblNewLabel = new JLabel("Open download page now?");
+			JLabel lblNewLabel = new JLabel(bundle.getString("mocca.download"));
 			lblNewLabel.setBounds(76, 55, 283, 27);
 			contentPanel.add(lblNewLabel);
 		}
