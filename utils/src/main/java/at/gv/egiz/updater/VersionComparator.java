@@ -13,7 +13,7 @@
  * See the Licence for the specific language governing permissions and
  * limitations under the Licence.
  */
-package at.gv.egiz.upater;
+package at.gv.egiz.updater;
 
 // Imports
 import java.util.Comparator;

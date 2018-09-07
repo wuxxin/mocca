@@ -1,4 +1,4 @@
-package at.gv.egiz.upater;
+package at.gv.egiz.updater;
 
 import java.awt.BorderLayout;
 import java.awt.Desktop;
@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -60,7 +59,7 @@ public class NewVersionDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		BufferedImage myPicture = ImageIO.read(new File("C:/Users/aabraham/Downloads/information-icon.png"));
+		BufferedImage myPicture = ImageIO.read(getClass().getResource("/at/gv/egiz/updater/information-icon.png"));
 		ImageIcon icon = new ImageIcon(myPicture.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
 		{
 			JLabel lblNewVersion = new JLabel("New Mocca Version " + version + " available.");

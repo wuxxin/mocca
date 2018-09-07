@@ -1,4 +1,4 @@
-package at.gv.egiz.upater;
+package at.gv.egiz.updater;
 
 import java.io.BufferedReader;
 import java.io.IOException;
