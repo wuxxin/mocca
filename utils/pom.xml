@@ -40,27 +40,11 @@
       <groupId>com.sun.xml.stream</groupId>
       <version>1.0.2</version>
     </dependency>
-	<dependency>
-	    <groupId>commons-logging</groupId>
-	    <artifactId>commons-logging</artifactId>
-	    <version>1.2</version>
-	</dependency>
-<!-- 	<dependency> -->
-<!-- 	    <groupId>commons-codec</groupId> -->
-<!-- 	    <artifactId>commons-codec</artifactId> -->
-<!-- 	    <version>1.11</version> -->
-<!-- 	</dependency> -->
     <dependency>
     	<groupId>commons-io</groupId>
     	<artifactId>commons-io</artifactId>
     	<version>2.5</version>
 	</dependency>
-<!-- 	<dependency> -->
-<!-- 	    <groupId>commons-httpclient</groupId> -->
-<!-- 	    <artifactId>commons-httpclient</artifactId> -->
-<!-- 	    <version>3.1</version> -->
-<!-- 	</dependency> -->
-	
 		    <!-- for testing -->
     <dependency>
     	<groupId>com.sun.xml.bind</groupId>
