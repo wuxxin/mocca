@@ -26,7 +26,7 @@ package at.gv.egiz.bku.webstart;
 
 import at.gv.egiz.bku.webstart.autostart.Autostart;
 import at.gv.egiz.bku.webstart.gui.StatusNotifier;
-import at.gv.egiz.upater.MoccaUpdater;
+import at.gv.egiz.updater.MoccaUpdater;
 import at.gv.egiz.bku.webstart.gui.BKUControllerInterface;
 import at.gv.egiz.bku.webstart.gui.MOCCAIcon;
 import iaik.asn1.CodingException;
@@ -51,8 +51,8 @@ import java.security.GeneralSecurityException;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 
-import javax.jnlp.BasicService;
-import javax.jnlp.ServiceManager;
+//import javax.jnlp.BasicService;
+//import javax.jnlp.ServiceManager;
 
 import org.mortbay.util.MultiException;
 import org.slf4j.Logger;
@@ -135,7 +135,7 @@ public class Launcher implements BKUControllerInterface {
 	}
 	private Configurator config;
 	private Container server;
-	private BasicService basicService;
+//	private BasicService basicService;
 	private StatusNotifier status;
 	private Autostart autostart;
 
@@ -231,19 +231,10 @@ public class Launcher implements BKUControllerInterface {
 	}
 
 	private void initStart() {
-		try {
 			status.info(StatusNotifier.MESSAGE_START);
-			basicService = (BasicService) ServiceManager.lookup("javax.jnlp.BasicService");
-			codeBase = basicService.getCodeBase();
 			autostart.setWebstartName(codeBase + WEBSTART_FILENAME);
-			if (basicService.isOffline()) {
-				log.info("launching MOCCA Web Start offline");
-			} else {
-				log.info("launching MOCCA Web Start online");
-			}
-		} catch (UnavailableServiceException ex) {
-			log.info("Failed to obtain JNLP service: " + ex.getMessage());
-		}
+			log.info("launching MOCCA Web Start offline");
+
 	}
 
 	private void initConfig() throws IOException, CodingException, GeneralSecurityException {
