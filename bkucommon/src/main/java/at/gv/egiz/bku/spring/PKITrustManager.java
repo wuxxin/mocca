@@ -149,8 +149,7 @@ public class PKITrustManager implements X509TrustManager {
     try {
       
       TrustStore trustStore = TrustStoreFactory.getInstance(pkiProfile.getTrustStoreProfile(), tid);
-      @SuppressWarnings("unchecked")
-      Set<X509Certificate> certs = trustStore.getTrustedCertificates(tid);
+      Set<iaik.x509.X509Certificate> certs = trustStore.getTrustedCertificates(tid);
       return certs.toArray(new X509Certificate[certs.size()]);
     } catch (TrustStoreException e) {
       log.warn("Failed to get list of accepted issuers.", e);

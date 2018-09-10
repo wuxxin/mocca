@@ -27,7 +27,9 @@ package at.gv.egiz.bku.spring;
 
 import iaik.logging.LogConfigurationException;
 import iaik.logging.LoggerConfig;
+import iaik.logging.TransactionId;
 import iaik.logging.impl.TransactionIdImpl;
+import iaik.pki.Configurator;
 import iaik.pki.DefaultPKIConfiguration;
 import iaik.pki.DefaultPKIProfile;
 import iaik.pki.PKIException;
@@ -206,8 +208,16 @@ public class PKIProfileFactoryBean implements FactoryBean, ResourceLoaderAware {
     DefaultPKIConfiguration pkiConfiguration = new DefaultPKIConfiguration(certStoreParameters);
   
     
-    PKIFactory pkiFactory = PKIFactory.getInstance();
-    pkiFactory.configure(pkiConfiguration, new TransactionIdImpl("Configure-PKI"));
+//    PKIFactory pkiFactory = PKIFactory.getInstance();
+//    pkiFactory.configure(pkiConfiguration, new TransactionIdImpl("Configure-PKI"));
+    TransactionId tid = new TransactionIdImpl("Configure-PKI");
+    Configurator.initCommon(null, tid);
+    if (PKIFactory.getInstance().isAlreadyConfigured()) {
+      log.info("PKIfactory is already configured.");
+    } else {
+      PKIFactory.getInstance().configure(pkiConfiguration, tid);
+    }
+    
   }
 
   protected TrustStoreProfile createDirectoryTrustStoreProfile() throws MalformedURLException, IOException {
@@ -261,7 +271,7 @@ public class PKIProfileFactoryBean implements FactoryBean, ResourceLoaderAware {
 
     DefaultPKIProfile pkiProfile = new DefaultPKIProfile(trustProfile);
     
-    pkiProfile.setAutoAddCertificates(true);
+    pkiProfile.setAutoAddCertificates(PKIProfile.AUTO_ADD_EE_DISABLE);
     pkiProfile.setPreferredServiceOrder(createRevocationServiceOrder());
     
     return pkiProfile;

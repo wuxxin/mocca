@@ -68,10 +68,7 @@ public class NewVersionDialog extends JDialog {
 	 */
 	public NewVersionDialog(String version) throws IOException {
 		
-		 ResourceBundle bundle = ResourceBundle.getBundle("at/gv/egiz/updater/Messages", getCurrenLocale());
-		 System.out.println(bundle.getString("title"));
-		 
-		
+		ResourceBundle bundle = ResourceBundle.getBundle("at/gv/egiz/updater/Messages", getCurrenLocale());
 		setTitle(bundle.getString("title"));
 		setResizable(false);
 		setBounds(100, 100, 375, 180);
