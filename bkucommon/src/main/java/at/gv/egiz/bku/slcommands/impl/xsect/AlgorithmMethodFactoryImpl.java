@@ -53,27 +53,33 @@ public class AlgorithmMethodFactoryImpl implements AlgorithmMethodFactory {
   /**
    * The signature algorithm URI.
    */
-  private String signatureAlgorithmURI;
+  protected String signatureAlgorithmURI;
   
   /**
    * The signature algorithm ID.
    */
-  private AlgorithmID signatureAlgorithmID;
+  protected AlgorithmID signatureAlgorithmID;
   
   /**
    * the digest algorithm URI.
    */
-  private String digestAlgorithmURI = DigestMethod.SHA1;
+  protected String digestAlgorithmURI = DigestMethod.SHA1;
 
   /**
    * The digest algorithm ID.
    */
-  private AlgorithmID digestAlgorithmID = AlgorithmID.sha1;
+  protected AlgorithmID digestAlgorithmID = AlgorithmID.sha1;
 
   /**
    * The algorithm parameters for the signature algorithm.
    */
-  private SignatureMethodParameterSpec signatureMethodParameterSpec;
+  protected SignatureMethodParameterSpec signatureMethodParameterSpec;
+  
+  /**
+   * Default Constructor
+   */
+  public AlgorithmMethodFactoryImpl(){  
+  }
 
   /**
    * Creates a new AlgorithmMethodFactory with the given

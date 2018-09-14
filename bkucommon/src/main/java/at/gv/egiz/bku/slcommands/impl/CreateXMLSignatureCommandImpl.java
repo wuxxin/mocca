@@ -78,7 +78,7 @@ public class CreateXMLSignatureCommandImpl extends
   /**
    * Logging facility.
    */
-  private final static Logger log = LoggerFactory.getLogger(CreateXMLSignatureCommandImpl.class);
+  protected final static Logger log = LoggerFactory.getLogger(CreateXMLSignatureCommandImpl.class);
 
   /**
    * The signing certificate.
@@ -98,10 +98,10 @@ public class CreateXMLSignatureCommandImpl extends
   /**
    * The configuration facade used to access the MOCCA configuration.
    */
-  private ConfigurationFacade configurationFacade = new ConfigurationFacade();
+  protected ConfigurationFacade configurationFacade = new ConfigurationFacade();
 
-  private class ConfigurationFacade implements MoccaConfigurationFacade {
-    private Configuration configuration;
+  protected class ConfigurationFacade implements MoccaConfigurationFacade {
+	  protected Configuration configuration;
 
     public static final String USE_STRONG_HASH = "UseStrongHash";
     public static final String USE_XADES_1_4 =
@@ -130,14 +130,14 @@ public class CreateXMLSignatureCommandImpl extends
     }
   }
 
-  private static long XADES_1_4_BLACKLIST_TS;
-  private static final List<String> XADES_1_4_BLACKLIST;
+  protected static long XADES_1_4_BLACKLIST_TS;
+  protected static final List<String> XADES_1_4_BLACKLIST;
   static {
     XADES_1_4_BLACKLIST = new ArrayList<String>();
     loadXAdES14Blacklist();
   }
 
-  private static void loadXAdES14Blacklist() {
+  protected static void loadXAdES14Blacklist() {
     XADES_1_4_BLACKLIST_TS = System.currentTimeMillis();
     XADES_1_4_BLACKLIST.clear();
     try {
@@ -154,7 +154,7 @@ public class CreateXMLSignatureCommandImpl extends
     }
   }
 
-  private static boolean matchesXAdES14Blacklist(String url) {
+  protected static boolean matchesXAdES14Blacklist(String url) {
     log.debug("Checking DataURL against XAdES14 blacklist: {}", url);
     if ((System.currentTimeMillis() - XADES_1_4_BLACKLIST_TS) >
       (ConfigurationFacade.XADES_1_4_BLACKLIST_EXPIRY * 1000)) {
@@ -232,7 +232,7 @@ public class CreateXMLSignatureCommandImpl extends
    * @throws SLCommandException
    *           if getting the singing certificate fails
    */
-  private void getSigningCertificate(SLCommandContext commandContext) throws SLCommandException {
+  protected void getSigningCertificate(SLCommandContext commandContext) throws SLCommandException {
 
     CreateXMLSignatureRequestType request = getRequestValue();
     keyboxIdentifier = request.getKeyboxIdentifier();
@@ -260,7 +260,7 @@ public class CreateXMLSignatureCommandImpl extends
    *           if signing the signature fails
    * @throws SLViewerException
    */
-  private void signXMLSignature(SLCommandContext commandContext) throws SLCommandException, SLViewerException {
+  protected void signXMLSignature(SLCommandContext commandContext) throws SLCommandException, SLViewerException {
 
     try {
       signature.sign(commandContext.getSTAL(), keyboxIdentifier);
