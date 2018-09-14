@@ -208,8 +208,7 @@ public class PKIProfileFactoryBean implements FactoryBean, ResourceLoaderAware {
     DefaultPKIConfiguration pkiConfiguration = new DefaultPKIConfiguration(certStoreParameters);
   
     
-//    PKIFactory pkiFactory = PKIFactory.getInstance();
-//    pkiFactory.configure(pkiConfiguration, new TransactionIdImpl("Configure-PKI"));
+//   do it here 
     TransactionId tid = new TransactionIdImpl("Configure-PKI");
     Configurator.initCommon(null, tid);
     if (PKIFactory.getInstance().isAlreadyConfigured()) {
