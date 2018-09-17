@@ -63,6 +63,7 @@ import org.springframework.core.io.ResourceLoader;
 import at.gv.egiz.bku.conf.IAIKLogAdapterFactory;
 import at.gv.egiz.bku.conf.MoccaConfigurationFacade;
 import at.gv.egiz.bku.utils.ConfigurationUtil;
+import iaik.pki.store.certstore.utils.DirectoryCertStoreConverter;
 
 public class PKIProfileFactoryBean implements FactoryBean, ResourceLoaderAware {
 
@@ -206,9 +207,16 @@ public class PKIProfileFactoryBean implements FactoryBean, ResourceLoaderAware {
         "CS", certDirectory.getAbsolutePath(), true, false) };
     
     DefaultPKIConfiguration pkiConfiguration = new DefaultPKIConfiguration(certStoreParameters);
+    if (url != null && url.toString().contains("file")) {
+		URL subjectdnUrl = new URL(url.toString() + "/subjectdn");
+		File subjectdn = resourceLoader.getResource(subjectdnUrl.toString()).getFile();
+		if (!subjectdn.exists() && !subjectdn.isDirectory()) {
+			log.info("Certificate Store is being converted");
+			DirectoryCertStoreConverter converter = new DirectoryCertStoreConverter();
+			converter.convert(certDirectory.getAbsolutePath(), certDirectory.getAbsolutePath(), true, true, null, null);
+		}
+	}
   
-    
-//   do it here 
     TransactionId tid = new TransactionIdImpl("Configure-PKI");
     Configurator.initCommon(null, tid);
     if (PKIFactory.getInstance().isAlreadyConfigured()) {
@@ -216,7 +224,7 @@ public class PKIProfileFactoryBean implements FactoryBean, ResourceLoaderAware {
     } else {
       PKIFactory.getInstance().configure(pkiConfiguration, tid);
     }
-    
+
   }
 
   protected TrustStoreProfile createDirectoryTrustStoreProfile() throws MalformedURLException, IOException {
