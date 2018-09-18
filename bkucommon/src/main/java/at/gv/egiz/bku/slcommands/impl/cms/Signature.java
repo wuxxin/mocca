@@ -279,7 +279,7 @@ public Signature(CMSDataObjectOptionalMetaType dataObject, String structure,
     return data;
   }
 
-  private void setAlgorithmIDs(X509Certificate signingCertificate, boolean useStrongHash) throws NoSuchAlgorithmException {
+  protected void setAlgorithmIDs(X509Certificate signingCertificate, boolean useStrongHash) throws NoSuchAlgorithmException {
     AlgorithmMethodFactory amf = new AlgorithmMethodFactoryImpl(signingCertificate, useStrongHash);
     signatureAlgorithmURI = amf.getSignatureAlgorithmURI();
     signatureAlgorithm = amf.getSignatureAlgorithmID();

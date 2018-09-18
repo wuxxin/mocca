@@ -63,7 +63,7 @@ public class CreateCMSSignatureCommandImpl extends
   /**
    * Logging facility.
    */
-  private final Logger log = LoggerFactory.getLogger(CreateCMSSignatureCommandImpl.class);
+  protected final Logger log = LoggerFactory.getLogger(CreateCMSSignatureCommandImpl.class);
 
   /**
    * The signing certificate.
@@ -83,10 +83,10 @@ public class CreateCMSSignatureCommandImpl extends
   /**
    * The configuration facade used to access the MOCCA configuration.
    */
-  private ConfigurationFacade configurationFacade = new ConfigurationFacade();
+  protected ConfigurationFacade configurationFacade = new ConfigurationFacade();
 
-  private class ConfigurationFacade implements MoccaConfigurationFacade {
-    private Configuration configuration;
+  protected class ConfigurationFacade implements MoccaConfigurationFacade {
+	  protected Configuration configuration;
 
     public static final String USE_STRONG_HASH = "UseStrongHash";
 
@@ -147,7 +147,7 @@ public class CreateCMSSignatureCommandImpl extends
    * @throws SLCommandException
    *           if getting the singing certificate fails
    */
-  private void getSigningCertificate(SLCommandContext commandContext) throws SLCommandException {
+  protected void getSigningCertificate(SLCommandContext commandContext) throws SLCommandException {
 
     CreateCMSSignatureRequestType request = getRequestValue();
     keyboxIdentifier = request.getKeyboxIdentifier();
@@ -175,7 +175,7 @@ public class CreateCMSSignatureCommandImpl extends
    *           if signing the signature fails
    * @throws SLViewerException
    */
-  private byte[] signCMSSignature(SLCommandContext commandContext) throws SLCommandException, SLViewerException {
+  protected byte[] signCMSSignature(SLCommandContext commandContext) throws SLCommandException, SLViewerException {
 
     try {
       return signature.sign(commandContext.getSTAL(), keyboxIdentifier);

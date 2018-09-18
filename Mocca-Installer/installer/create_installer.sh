@@ -63,10 +63,12 @@ echo generating mac app...
 cd mac
 rm -rf Mocca.app/Contents/Java/*
 cp -r bin/ Mocca.app/Contents/Java/
+cd ..
 echo generating mac app... done!
 
 #cleanup
 rm -rf tmp
+echo cleanup... done!
 
 
 

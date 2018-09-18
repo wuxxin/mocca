@@ -93,65 +93,69 @@ public class AlgorithmMethodFactoryImpl implements AlgorithmMethodFactory {
    */
   public AlgorithmMethodFactoryImpl(X509Certificate signingCertificate, boolean useStrongHash)
       throws NoSuchAlgorithmException {
+	  
+	  setAlgorithmURIs(signingCertificate, useStrongHash);
+  }
+  
+  protected void setAlgorithmURIs(X509Certificate signingCertificate, boolean useStrongHash) throws NoSuchAlgorithmException{
+	  
+	  PublicKey publicKey = signingCertificate.getPublicKey();
+	    String algorithm = publicKey.getAlgorithm();
 
-    PublicKey publicKey = signingCertificate.getPublicKey();
-    String algorithm = publicKey.getAlgorithm();
+	    if ("DSA".equals(algorithm)) {
+	      signatureAlgorithmURI = SignatureMethod.DSA_SHA1;
+	      signatureAlgorithmID = AlgorithmID.dsaWithSHA1;
+	    } else if ("RSA".equals(algorithm)) {
+	      
+	      int keyLength = 0;
+	      if (publicKey instanceof RSAPublicKey) {
+	        keyLength = ((RSAPublicKey) publicKey).getModulus().bitLength();
+	      }
+	      
+	      if (useStrongHash && keyLength >= 2048) {
+	        signatureAlgorithmURI = XmldsigMore.SIGNATURE_RSA_SHA256;
+	        signatureAlgorithmID = AlgorithmID.sha256WithRSAEncryption;
+	        digestAlgorithmURI = DigestMethod.SHA256;
+	        digestAlgorithmID = AlgorithmID.sha256;
+	      } else {
+	        signatureAlgorithmURI = SignatureMethod.RSA_SHA1;
+	        signatureAlgorithmID = AlgorithmID.sha1WithRSAEncryption;
+	      }
+	      
+	    } else if (("EC".equals(algorithm)) || ("ECDSA".equals(algorithm))) {
+	      
+	      int fieldSize = 0;
+	      if (publicKey instanceof ECPublicKey) {
+	        ECParameterSpec params = ((ECPublicKey) publicKey).getParams();
+	        fieldSize = params.getCurve().getField().getFieldSize();
+	      } else {
+	        throw new NoSuchAlgorithmException("Public key type not supported.");
+	      }
 
-    if ("DSA".equals(algorithm)) {
-      signatureAlgorithmURI = SignatureMethod.DSA_SHA1;
-      signatureAlgorithmID = AlgorithmID.dsaWithSHA1;
-    } else if ("RSA".equals(algorithm)) {
-      
-      int keyLength = 0;
-      if (publicKey instanceof RSAPublicKey) {
-        keyLength = ((RSAPublicKey) publicKey).getModulus().bitLength();
-      }
-      
-      if (useStrongHash && keyLength >= 2048) {
-        signatureAlgorithmURI = XmldsigMore.SIGNATURE_RSA_SHA256;
-        signatureAlgorithmID = AlgorithmID.sha256WithRSAEncryption;
-        digestAlgorithmURI = DigestMethod.SHA256;
-        digestAlgorithmID = AlgorithmID.sha256;
-      } else {
-        signatureAlgorithmURI = SignatureMethod.RSA_SHA1;
-        signatureAlgorithmID = AlgorithmID.sha1WithRSAEncryption;
-      }
-      
-    } else if (("EC".equals(algorithm)) || ("ECDSA".equals(algorithm))) {
-      
-      int fieldSize = 0;
-      if (publicKey instanceof ECPublicKey) {
-        ECParameterSpec params = ((ECPublicKey) publicKey).getParams();
-        fieldSize = params.getCurve().getField().getFieldSize();
-      } else {
-        throw new NoSuchAlgorithmException("Public key type not supported.");
-      }
-
-      if (useStrongHash && fieldSize >= 512) {
-        signatureAlgorithmURI = XmldsigMore.SIGNATURE_ECDSA_SHA512;
-        signatureAlgorithmID = AlgorithmID.ecdsa_With_SHA512;
-        digestAlgorithmURI = DigestMethod.SHA512;
-        digestAlgorithmID = AlgorithmID.sha512;
-      } else if (useStrongHash && fieldSize >= 256) {
-        signatureAlgorithmURI = XmldsigMore.SIGNATURE_ECDSA_SHA256;
-        signatureAlgorithmID = AlgorithmID.ecdsa_With_SHA256;
-        digestAlgorithmURI = DigestMethod.SHA256;
-        digestAlgorithmID = AlgorithmID.sha256;
-      } else if (useStrongHash) {
-          signatureAlgorithmURI = XmldsigMore.SIGNATURE_ECDSA_RIPEMD160;
-          signatureAlgorithmID = AlgorithmID.ecdsa_plain_With_RIPEMD160;
-          digestAlgorithmURI = DigestMethod.RIPEMD160;
-          digestAlgorithmID = AlgorithmID.ripeMd160;
-      } else {
-        signatureAlgorithmURI = XmldsigMore.SIGNATURE_ECDSA_SHA1;
-        signatureAlgorithmID = AlgorithmID.ecdsa_With_SHA1;
-      }
-      
-    } else {
-      throw new NoSuchAlgorithmException("Public key algorithm '" + algorithm
-          + "' not supported.");
-    }
-
+	      if (useStrongHash && fieldSize >= 512) {
+	        signatureAlgorithmURI = XmldsigMore.SIGNATURE_ECDSA_SHA512;
+	        signatureAlgorithmID = AlgorithmID.ecdsa_With_SHA512;
+	        digestAlgorithmURI = DigestMethod.SHA512;
+	        digestAlgorithmID = AlgorithmID.sha512;
+	      } else if (useStrongHash && fieldSize >= 256) {
+	        signatureAlgorithmURI = XmldsigMore.SIGNATURE_ECDSA_SHA256;
+	        signatureAlgorithmID = AlgorithmID.ecdsa_With_SHA256;
+	        digestAlgorithmURI = DigestMethod.SHA256;
+	        digestAlgorithmID = AlgorithmID.sha256;
+	      } else if (useStrongHash) {
+	          signatureAlgorithmURI = XmldsigMore.SIGNATURE_ECDSA_RIPEMD160;
+	          signatureAlgorithmID = AlgorithmID.ecdsa_plain_With_RIPEMD160;
+	          digestAlgorithmURI = DigestMethod.RIPEMD160;
+	          digestAlgorithmID = AlgorithmID.ripeMd160;
+	      } else {
+	        signatureAlgorithmURI = XmldsigMore.SIGNATURE_ECDSA_SHA1;
+	        signatureAlgorithmID = AlgorithmID.ecdsa_With_SHA1;
+	      }
+	      
+	    } else {
+	      throw new NoSuchAlgorithmException("Public key algorithm '" + algorithm
+	          + "' not supported.");
+	    }
   }
 
   /*
