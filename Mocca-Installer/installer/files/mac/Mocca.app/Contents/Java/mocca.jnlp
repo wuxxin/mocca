@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" codebase="http://localhost:8080/webstart/" context="http://localhost:8080/" href="mocca.jnlp">
+
+  <information>
+    <title>MOCCA Webstart Unstable</title>
+    <vendor>E-Government Innovationszentrum (EGIZ)</vendor>
+    <homepage href="http://joinup.ec.europa.eu/site/mocca/"/>
+    <description>MOCCA Webstart - Unstable Build</description>
+    <description kind="short">MOCCA Webstart Unstable</description>
+    <icon kind="shortcut" href="img/chip16.png" width="16" height="16"/>
+    <icon kind="shortcut" href="img/chip24.png" width="24" height="24"/>
+    <icon kind="shortcut" href="img/chip32.png" width="32" height="32"/>
+    <icon kind="shortcut" href="img/chip48.png" width="48" height="48"/>
+    <icon kind="shortcut" href="img/chip128.png" width="128" height="128"/>
+    <icon kind="default" href="img/chip16.png" width="16" height="16"/>
+    <icon kind="default" href="img/chip24.png" width="24" height="24"/>
+    <icon kind="default" href="img/chip32.png" width="32" height="32"/>
+    <icon kind="default" href="img/chip48.png" width="48" height="48"/>
+    <icon kind="default" href="img/chip128.png" width="128" height="128"/>
+    <icon kind="splash" href="img/splash.png"/>
+    <shortcut online="true">
+      <desktop/>
+      <menu submenu="e-Government"/>
+    </shortcut>
+
+    <offline-allowed/>
+
+  </information>
+  
+  <security>
+    <all-permissions/>
+  </security>
+
+  <update check="timeout" policy="prompt-update"/>
+
+  <resources os="Mac OS X">
+    <java version="1.7+" />
+    <java version="1.6" java-vm-args="-d32"/>
+         
+    <jar href="BKUWebStart-1.3.35-SNAPSHOT.jar" main="true"/>
+    <jar href="BKUCertificates-1.1.17-SNAPSHOT.jar"/>
+    <jar href="iaik_jce_full_signed-5.5.jar"/>
+    <jar href="utils-1.3.35-SNAPSHOT.jar"/>
+    <jar href="iaik_eccelerate-3.01.jar"/>
+    <jar href="iaik_xsect_signed-1.17.jar"/>
+    <jar href="jaxb-runtime-2.3.0.jar"/>
+    <jar href="jaxb-core-2.3.0.jar"/>
+    <jar href="jaxb-api-2.3.0.jar"/>
+    <jar href="txw2-2.3.0.jar"/>
+    <jar href="istack-commons-runtime-3.0.5.jar"/>
+    <jar href="stax-ex-1.7.8.jar"/>
+    <jar href="FastInfoset-1.2.13.jar"/>
+    <jar href="sjsxp-1.0.2.jar"/>
+    <jar href="stax-api-1.0.jar"/>
+    <jar href="commons-io-2.5.jar"/>
+    <jar href="jetty-6.1.19.jar"/>
+    <jar href="jetty-util-6.1.19.jar"/>
+    <jar href="servlet-api-2.5-20081211.jar"/>
+    <jar href="slf4j-api-1.6.4.jar"/>
+    <jar href="slf4j-log4j12-1.6.4.jar"/>
+    <jar href="log4j-1.2.17.jar"/>
+
+  </resources>
+
+  <resources>
+    <java version="1.6+"/>
+         
+    <jar href="BKUWebStart-1.3.35-SNAPSHOT.jar" main="true"/>
+    <jar href="BKUCertificates-1.1.17-SNAPSHOT.jar"/>
+    <jar href="iaik_jce_full_signed-5.5.jar"/>
+    <jar href="utils-1.3.35-SNAPSHOT.jar"/>
+    <jar href="iaik_eccelerate-3.01.jar"/>
+    <jar href="iaik_xsect_signed-1.17.jar"/>
+    <jar href="jaxb-runtime-2.3.0.jar"/>
+    <jar href="jaxb-core-2.3.0.jar"/>
+    <jar href="jaxb-api-2.3.0.jar"/>
+    <jar href="txw2-2.3.0.jar"/>
+    <jar href="istack-commons-runtime-3.0.5.jar"/>
+    <jar href="stax-ex-1.7.8.jar"/>
+    <jar href="FastInfoset-1.2.13.jar"/>
+    <jar href="sjsxp-1.0.2.jar"/>
+    <jar href="stax-api-1.0.jar"/>
+    <jar href="commons-io-2.5.jar"/>
+    <jar href="jetty-6.1.19.jar"/>
+    <jar href="jetty-util-6.1.19.jar"/>
+    <jar href="servlet-api-2.5-20081211.jar"/>
+    <jar href="slf4j-api-1.6.4.jar"/>
+    <jar href="slf4j-log4j12-1.6.4.jar"/>
+    <jar href="log4j-1.2.17.jar"/>
+
+  </resources>
+
+  <application-desc main-class="at.gv.egiz.bku.webstart.Launcher"/>
+</jnlp>

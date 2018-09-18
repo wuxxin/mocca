@@ -1,2 +1,6 @@
 mocca-cache
 mocca-SetupFiles
+installer/linux/*
+installer/mac/*
+installer/win/*
+installer/tmp/*
