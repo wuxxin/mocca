@@ -75,11 +75,6 @@ public class AlgorithmMethodFactoryImpl implements AlgorithmMethodFactory {
    */
   protected SignatureMethodParameterSpec signatureMethodParameterSpec;
   
-  /**
-   * Default Constructor
-   */
-  public AlgorithmMethodFactoryImpl(){  
-  }
 
   /**
    * Creates a new AlgorithmMethodFactory with the given
