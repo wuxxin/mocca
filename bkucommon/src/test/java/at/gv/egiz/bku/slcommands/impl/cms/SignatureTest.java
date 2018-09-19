@@ -23,7 +23,7 @@ import iaik.asn1.structures.AlgorithmID;
 import iaik.cms.InvalidSignatureValueException;
 import iaik.cms.SignedData;
 import iaik.cms.SignerInfo;
-import iaik.security.ecc.provider.ECCProvider;
+import iaik.security.ec.provider.ECCelerate;
 import iaik.security.provider.IAIK;
 import iaik.x509.X509Certificate;
 
@@ -34,7 +34,7 @@ public class SignatureTest {
   @BeforeClass
   public static void setUpClass() {
     IAIK.addAsProvider();
-    ECCProvider.addAsProvider();
+    ECCelerate.addAsProvider();
   }
 
   @Test

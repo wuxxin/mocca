@@ -1,4 +1,5 @@
 /*
+
  * Copyright 2018 by Graz University of Technology, Austria
  * MOCCA has been developed by the E-Government Innovation Center EGIZ, a joint
  * initiative of the Federal Chancellery Austria and Graz University of Technology.
@@ -134,6 +135,8 @@ public class NewVersionDialog extends JDialog {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						openLink();
+						try { Thread.sleep(1000); } catch (InterruptedException e1) {}
+						close();
 					}
 				});
 				okButton.setActionCommand("OK");

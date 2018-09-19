@@ -21,11 +21,7 @@
  * that you distribute must include a readable copy of the "NOTICE" text file.
  */
 
-
-
 package at.gv.egiz.bku.slcommands.impl.xsect;
-
-import iaik.xml.crypto.dsig.AbstractSignatureMethodImpl;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -52,88 +48,97 @@ import at.gv.egiz.stal.STALResponse;
 import at.gv.egiz.stal.SignRequest;
 import at.gv.egiz.stal.SignRequest.SignedInfo;
 import at.gv.egiz.stal.SignResponse;
+import iaik.xml.crypto.dsig.SignatureMethodImpl;
 
-public class STALSignatureMethod extends AbstractSignatureMethodImpl {
-  
-  /**
-   * Creates a new instance of this <code>STALSignatureMethod</code>
-   * with the given <code>algorithm</code> and <code>params</code>.
-   * 
-   * @param algorithm the algorithm URI
-   * @param params optional algorithm parameters
-   * @throws InvalidAlgorithmParameterException if the specified parameters 
-   * are inappropriate for the requested algorithm
-   * @throws NoSuchAlgorithmException if an implementation of the specified 
-   * algorithm cannot be found
-   * @throws NullPointerException if <code>algorithm</code> is <code>null</code>  
-   */
-  public STALSignatureMethod(String algorithm,
-      SignatureMethodParameterSpec params)
-      throws InvalidAlgorithmParameterException, NoSuchAlgorithmException {
-    super(algorithm, params);
-  }
+public class STALSignatureMethod extends SignatureMethodImpl {
 
-  @Override
-  public byte[] calculateSignatureValue(XMLCryptoContext context, Key key, InputStream message)
-      throws XMLSignatureException, IOException {
-    
-    if (!(key instanceof STALPrivateKey)) {
-      throw new XMLSignatureException("STALSignatureMethod expects STALPrivateKey.");
-    }
+	/**
+	 * Creates a new instance of this <code>STALSignatureMethod</code> with the
+	 * given <code>algorithm</code> and <code>params</code>.
+	 * 
+	 * @param algorithm
+	 *            the algorithm URI
+	 * @param params
+	 *            optional algorithm parameters
+	 * @throws InvalidAlgorithmParameterException
+	 *             if the specified parameters are inappropriate for the requested
+	 *             algorithm
+	 * @throws NoSuchAlgorithmException
+	 *             if an implementation of the specified algorithm cannot be found
+	 * @throws NullPointerException
+	 *             if <code>algorithm</code> is <code>null</code>
+	 */
+	public STALSignatureMethod(String algorithm, SignatureMethodParameterSpec params)
+			throws InvalidAlgorithmParameterException, NoSuchAlgorithmException {
+		super(algorithm, params);
+	}
 
-    STAL stal = ((STALPrivateKey) key).getStal();
-    String keyboxIdentifier = ((STALPrivateKey) key).getKeyboxIdentifier();
-    List<DataObject> dataObjects = ((STALPrivateKey) key).getDataObjects();
-    
-    List<HashDataInput> hashDataInputs = new ArrayList<HashDataInput>();
-    for (DataObject dataObject : dataObjects) {
-      try {
-        dataObject.validateHashDataInput();
-      } catch (SLViewerException e) {
-        throw new XMLSignatureException(e);
-      }
-      hashDataInputs.add(new DataObjectHashDataInput(dataObject));
-    }
-    
-    ByteArrayOutputStream m = new ByteArrayOutputStream();
-    StreamUtil.copyStream(message, m);
-    
-    SignRequest signRequest = new SignRequest();
-    signRequest.setKeyIdentifier(keyboxIdentifier);
-    SignedInfo signedInfo = new SignedInfo();
-    signedInfo.setValue(m.toByteArray());
-    signRequest.setSignedInfo(signedInfo);
-    signRequest.setHashDataInput(hashDataInputs);
+	@Override
+	public byte[] calculateSignatureValue(XMLCryptoContext context, Key key, InputStream message)
+			throws XMLSignatureException, IOException {
 
-    List<STALResponse> responses = 
-      stal.handleRequest(Collections.singletonList((STALRequest) signRequest));
-    
-    if (responses == null || responses.size() != 1) {
-      throw new XMLSignatureException("Failed to access STAL.");
-    }
+		if (!(key instanceof STALPrivateKey)) {
+			throw new XMLSignatureException("STALSignatureMethod expects STALPrivateKey.");
+		}
 
-    STALResponse response = responses.get(0);
-    if (response instanceof SignResponse) {
-      return ((SignResponse) response).getSignatureValue();
-    } else if (response instanceof ErrorResponse) {
-      ErrorResponse err = (ErrorResponse) response;
-      STALSignatureException se = new STALSignatureException(err.getErrorCode(), err.getErrorMessage());
-      throw new XMLSignatureException(se);
-    } else {
-      throw new XMLSignatureException("Failed to access STAL.");
-    }
-    
-  }
+		STAL stal = ((STALPrivateKey) key).getStal();
+		String keyboxIdentifier = ((STALPrivateKey) key).getKeyboxIdentifier();
+		List<DataObject> dataObjects = ((STALPrivateKey) key).getDataObjects();
 
-  @Override
-  public boolean validateSignatureValue(XMLCryptoContext context, Key key, byte[] value,
-      InputStream message) throws XMLSignatureException, IOException {
-    throw new XMLSignatureException("The STALSignatureMethod does not support validation.");
-  }
+		List<HashDataInput> hashDataInputs = new ArrayList<HashDataInput>();
+		for (DataObject dataObject : dataObjects) {
+			try {
+				dataObject.validateHashDataInput();
+			} catch (SLViewerException e) {
+				throw new XMLSignatureException(e);
+			}
+			hashDataInputs.add(new DataObjectHashDataInput(dataObject));
+		}
 
-  @Override
-  protected Class<?> getParameterSpecClass() {
-    return null;
-  }
-  
+		ByteArrayOutputStream m = new ByteArrayOutputStream();
+		StreamUtil.copyStream(message, m);
+
+		SignRequest signRequest = new SignRequest();
+		signRequest.setKeyIdentifier(keyboxIdentifier);
+		SignedInfo signedInfo = new SignedInfo();
+		signedInfo.setValue(m.toByteArray());
+		signRequest.setSignedInfo(signedInfo);
+		signRequest.setHashDataInput(hashDataInputs);
+
+		List<STALResponse> responses = stal.handleRequest(Collections.singletonList((STALRequest) signRequest));
+
+		if (responses == null || responses.size() != 1) {
+			throw new XMLSignatureException("Failed to access STAL.");
+		}
+
+		STALResponse response = responses.get(0);
+		if (response instanceof SignResponse) {
+			return ((SignResponse) response).getSignatureValue();
+		} else if (response instanceof ErrorResponse) {
+			ErrorResponse err = (ErrorResponse) response;
+			STALSignatureException se = new STALSignatureException(err.getErrorCode(), err.getErrorMessage());
+			throw new XMLSignatureException(se);
+		} else {
+			throw new XMLSignatureException("Failed to access STAL.");
+		}
+
+	}
+
+	@Override
+	public boolean validateSignatureValue(XMLCryptoContext context, Key key, byte[] value, InputStream message)
+			throws XMLSignatureException, IOException {
+		throw new XMLSignatureException("The STALSignatureMethod does not support validation.");
+	}
+
+//	@Override
+//	protected Class<?> getParameterSpecClass() {
+//		return null;
+//	}
+
+	@Override
+	public boolean validateSignatureValue(Key key, byte[] value, InputStream message) throws XMLSignatureException, IOException    {       
+	    throw new XMLSignatureException("The STALSignatureMethod does not support validation.");
+	}
+
+
 }

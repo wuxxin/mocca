@@ -96,7 +96,7 @@
     </dependency>
     <dependency>
       <groupId>iaik</groupId>
-      <artifactId>iaik_xsect_signed</artifactId>
+      <artifactId>iaik_xsect</artifactId>
     </dependency>
     <dependency>
       <groupId>iaik</groupId>
@@ -105,11 +105,6 @@
     <dependency>
       <groupId>iaik</groupId>
       <artifactId>iaik_pki</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>iaik</groupId>
-      <artifactId>iaik_ecc_signed</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>

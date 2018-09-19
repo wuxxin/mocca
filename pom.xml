@@ -327,7 +327,7 @@
       <dependency>
         <groupId>iaik</groupId>
         <artifactId>iaik_jce_full_signed</artifactId>
-        <version>5.5</version>
+        <version>5.52</version>
         <scope>compile</scope>
       </dependency>
       <dependency>
@@ -338,17 +338,17 @@
       <dependency>
         <groupId>iaik</groupId>
         <artifactId>iaik_eccelerate</artifactId>
-        <version>3.01</version>
+        <version>5.0</version>
       </dependency>
       <dependency>
         <groupId>iaik</groupId>
         <artifactId>iaik_eccelerate_cms</artifactId>
-        <version>3.01</version>
+        <version>5.0</version>
       </dependency>
       <dependency>
         <groupId>iaik</groupId>
-        <artifactId>iaik_xsect_signed</artifactId>
-        <version>1.17</version>
+        <artifactId>iaik_xsect</artifactId>
+        <version>2.13</version>
       </dependency>
       <dependency>
         <groupId>iaik</groupId>
@@ -360,11 +360,6 @@
         <artifactId>iaik_pki</artifactId>
         <version>2.00-MOA-MOCCA</version>
         <scope>compile</scope>
-      </dependency>
-      <dependency>
-        <groupId>iaik</groupId>
-        <artifactId>iaik_ecc_signed</artifactId>
-        <version>2.19</version>
       </dependency>
       <dependency>
         <groupId>javax.servlet</groupId>

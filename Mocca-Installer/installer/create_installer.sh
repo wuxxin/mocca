@@ -62,7 +62,7 @@ echo generating linux zip... done!
 echo generating mac app...
 cd mac
 rm -rf Mocca.app/Contents/Java/*
-cp -r bin/ Mocca.app/Contents/Java/
+cp -r bin/* Mocca.app/Contents/Resources/bin/
 cd ..
 echo generating mac app... done!
 

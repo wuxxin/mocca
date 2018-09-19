@@ -24,7 +24,7 @@
     </dependency>
     <dependency>
       <groupId>iaik</groupId>
-      <artifactId>iaik_xsect_signed</artifactId>
+      <artifactId>iaik_xsect</artifactId>
     </dependency>
     <!-- dependency to ensure NamespacePrefixmapper -->
     <dependency>
