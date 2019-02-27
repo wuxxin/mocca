@@ -34,7 +34,7 @@ rm -f player.jnlp
 rm -f mocca-$VERSION.zip
 rm -rf bin
 rm -rf img
-mv BKUWebStart-1.3.35-SNAPSHOT.jar mocca.jar
+mv BKUWebStart-$VERSION.jar mocca.jar
 
 #prepare packages 
 echo preparing packages...
