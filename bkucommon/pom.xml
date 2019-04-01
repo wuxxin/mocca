@@ -60,7 +60,7 @@
     </dependency>
 
     <dependency>
-      <groupId>iaik</groupId>
+      <groupId>iaik.moa</groupId>
       <artifactId>iaik_jce_full_signed</artifactId>
     </dependency>
     <dependency>
@@ -99,7 +99,7 @@
       <artifactId>iaik_xsect</artifactId>
     </dependency>
     <dependency>
-      <groupId>iaik</groupId>
+      <groupId>iaik.moa</groupId>
       <artifactId>iaik_cms</artifactId>
     </dependency>
     <dependency>

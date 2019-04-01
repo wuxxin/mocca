@@ -232,6 +232,11 @@
       <name>Maven Central Repository</name>
       <url>http://repo1.maven.org/maven2/</url>
     </repository>
+		<repository>
+			<id>internal-repo</id>
+			<name>Internal Repository</name>
+			<url>https://apps.egiz.gv.at/maven/</url>
+	</repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
@@ -325,9 +330,9 @@
         <version>2.7.1</version>
       </dependency>
       <dependency>
-        <groupId>iaik</groupId>
+        <groupId>iaik.moa</groupId>
         <artifactId>iaik_jce_full_signed</artifactId>
-        <version>5.52</version>
+        <version>5.52_MOA</version>
         <scope>compile</scope>
       </dependency>
       <dependency>
@@ -338,12 +343,12 @@
       <dependency>
         <groupId>iaik</groupId>
         <artifactId>iaik_eccelerate</artifactId>
-        <version>5.0</version>
+        <version>5.01</version>
       </dependency>
       <dependency>
         <groupId>iaik</groupId>
         <artifactId>iaik_eccelerate_cms</artifactId>
-        <version>5.0</version>
+        <version>5.01</version>
       </dependency>
       <dependency>
         <groupId>iaik</groupId>
@@ -351,9 +356,9 @@
         <version>2.13</version>
       </dependency>
       <dependency>
-        <groupId>iaik</groupId>
+        <groupId>iaik.moa</groupId>
         <artifactId>iaik_cms</artifactId>
-        <version>4.1</version>
+        <version>5.1_MOA</version>
       </dependency>
       <dependency>
         <groupId>iaik</groupId>

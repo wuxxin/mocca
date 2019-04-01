@@ -31,7 +31,7 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>iaik</groupId>
+      <groupId>iaik.moa</groupId>
       <artifactId>iaik_jce_full_signed</artifactId>
       <scope>test</scope>
     </dependency>
