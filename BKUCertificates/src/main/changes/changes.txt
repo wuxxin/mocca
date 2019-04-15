@@ -7,6 +7,20 @@ Tags:
 -------------------
 '''BKUCertificates-1.16 (mocca-1.3.32)'''
 -------------------
+D-TRUST Root Class 3 CA 2 EV 2009 (''ADDED'', TRUSTED)
+* Serial Number: 0983f4
+* Issuer: CN = D-TRUST Root Class 3 CA 2 EV 2009, O = D-Trust GmbH, C = DE
+* Subject: CN = D-TRUST Root Class 3 CA 2 EV 2009, O = D-Trust GmbH, C = DE
+* Not Before: ‎Donnerstag, ‎5. ‎November ‎2009 10:50:46
+* Not After: ‎‎Montag, ‎5. ‎November ‎2029 10:50:46
+
+D-TRUST CA 2-2EV 2016 (''ADDED'', TRUSTED)
+* Serial Number: 0fe48e
+* Issuer: CN = D-TRUST Root Class 3 CA 2 EV 2009, O = D-Trust GmbH, C = DE
+* Subject: CN = D-TRUST CA 2-2 EV 2016, O = D-Trust GmbH, C = DE
+* Not Before: ‎‎Mittwoch, ‎16. ‎November ‎2016 11:46:19
+* Not After: ‎Montag, ‎5. ‎November ‎2029 10:50:46
+
 Thwate RSA CA 2018 (''ADDED'', TRUSTED)
 * Serial Number: 025a8aef196f7e0d6c2104b21ae6702b
 * Issuer: CN = DigiCert Global Root CA, OU = www.digicert.com, O = DigiCert Inc, C = US
