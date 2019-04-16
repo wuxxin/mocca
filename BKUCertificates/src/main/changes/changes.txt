@@ -5,7 +5,7 @@ Tags:
 * ''REMOVED''  ... certificate removed in this release
 * TRUSTED	... certificate included in truststore
 -------------------
-'''BKUCertificates-1.16 (mocca-1.3.32)'''
+'''BKUCertificates-1.16 (mocca-1.4.1)'''
 -------------------
 D-TRUST Root Class 3 CA 2 EV 2009 (''ADDED'', TRUSTED)
 * Serial Number: 0983f4
