@@ -13,7 +13,7 @@
   
   <build>
     <plugins>
-
+	
       <!-- Include the BKULocal war artifact in the BKUWebStart jar
        |   BKULauncher resolves resource and copies it to jetty's webapp dir 
        |
