@@ -97,7 +97,7 @@ public class AboutDialog extends javax.swing.JDialog {
     java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("at/gv/egiz/bku/webstart/messages"); // NOI18N
     setTitle(bundle.getString("about.frame.title")); // NOI18N
 
-    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/at/gv/egiz/bku/webstart/Buergerkarte_logo_kreis.png"))); // NOI18N
+    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/at/gv/egiz/bku/webstart/Buergerkarte_logo.png"))); // NOI18N
 
     jLabel2.setText(getVersionText(bundle));
 
