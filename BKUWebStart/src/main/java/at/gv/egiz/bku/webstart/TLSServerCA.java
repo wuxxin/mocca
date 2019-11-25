@@ -56,7 +56,8 @@ import org.slf4j.LoggerFactory;
 public class TLSServerCA {
   public static final int CA_VALIDITY_Y = 3;
   public static final String MOCCA_TLS_SERVER_ALIAS = "server";
-  public static final int SERVER_VALIDITY_Y = 3;
+  public static final int SERVER_VALIDITY_Y = 3;  
+  public static final int SERVER_VALIDITY_Y_MAC = 2;
   private final static Logger log = LoggerFactory.getLogger(TLSServerCA.class);
 
   private KeyPair caKeyPair;
@@ -140,13 +141,25 @@ public class TLSServerCA {
     GregorianCalendar date = new GregorianCalendar();
     date.add(Calendar.HOUR_OF_DAY, -1);
     serverCert.setValidNotBefore(date.getTime());
-    date.add(Calendar.YEAR,SERVER_VALIDITY_Y);
+    if (isMacOs()) {
+    	date.add(Calendar.YEAR,SERVER_VALIDITY_Y_MAC);
+    } else {
+    	date.add(Calendar.YEAR,SERVER_VALIDITY_Y);
+    }
     date.add(Calendar.HOUR_OF_DAY, -1);
     serverCert.setValidNotAfter(date.getTime());
     serverCert.sign(AlgorithmID.sha256WithRSAEncryption, caKeyPair.getPrivate());
 
     log.debug("successfully generated MOCCA TLS Server certificate " + serverCert.getSubjectDN());
     caKeyPair = null;
+  }
+  
+  private boolean isMacOs() {
+		String os = System.getProperty("os.name").toLowerCase();
+		if (os.contains("mac")) {
+			return true;
+		}
+		return false;   
   }
 
   public KeyStore generateKeyStore(char[] password) throws GeneralSecurityException, IOException, CodingException {
