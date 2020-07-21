@@ -135,7 +135,6 @@ public class Launcher implements BKUControllerInterface {
 	}
 	private Configurator config;
 	private Container server;
-//	private BasicService basicService;
 	private StatusNotifier status;
 	private Autostart autostart;
 

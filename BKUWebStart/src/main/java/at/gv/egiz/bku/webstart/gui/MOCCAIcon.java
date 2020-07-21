@@ -152,14 +152,17 @@ public class MOCCAIcon implements StatusNotifier, ActionListener, ItemListener {
 				Menu settingsMenu = new Menu(messages.getString(LABEL_SETTINGS));
 				menu.add(settingsMenu);
 
-				CheckboxMenuItem autostartItem = new CheckboxMenuItem(
-						messages.getString(LABEL_AUTOSTART));
-				autostartItem.addItemListener(this);
-				autostartItem.setActionCommand(COMMANDS.AUTOSTART_COMMAND.name());
-				autostartItem.setState(controller.isAutostartEnabled());
-				autostartItem.setEnabled(controller.isAutostartPossible());
-				settingsMenu.add(autostartItem);
-
+				// only add autostart for older java versions
+				String version = System.getProperty("java.version");
+				if (version.startsWith("1.")) {
+					CheckboxMenuItem autostartItem = new CheckboxMenuItem(
+							messages.getString(LABEL_AUTOSTART));
+					autostartItem.addItemListener(this);
+					autostartItem.setActionCommand(COMMANDS.AUTOSTART_COMMAND.name());
+					autostartItem.setState(controller.isAutostartEnabled());
+					autostartItem.setEnabled(controller.isAutostartPossible());
+					settingsMenu.add(autostartItem);
+				}
 				menu.addSeparator();
 
 				MenuItem shutdownItem = new MenuItem(
