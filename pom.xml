@@ -222,16 +222,16 @@
       <name>MOCCA JoinUp</name>
       <url>https://apps.egiz.gv.at/maven/</url>
     </repository>
-    <repository>
-      <id>maven2-repository.dev.java.net</id>
-      <name>Java.net Repository for Maven 2</name>
-      <url>http://download.java.net/maven/2/</url>
-    </repository>
-    <repository>
-      <id>maven-central</id>
-      <name>Maven Central Repository</name>
-      <url>http://repo1.maven.org/maven2/</url>
-    </repository>
+<!--     <repository> -->
+<!--       <id>maven2-repository.dev.java.net</id> -->
+<!--       <name>Java.net Repository for Maven 2</name> -->
+<!--       <url>http://download.java.net/maven/2/</url> -->
+<!--     </repository> -->
+<!--     <repository> -->
+<!--       <id>maven-central</id> -->
+<!--       <name>Maven Central Repository</name> -->
+<!--       <url>http://repo1.maven.org/maven2/</url> -->
+<!--     </repository> -->
 		<repository>
 			<id>internal-repo</id>
 			<name>Internal Repository</name>
@@ -239,18 +239,18 @@
 	</repository>
   </repositories>
   <pluginRepositories>
-    <pluginRepository>
-      <id>maven-central</id>
-      <name>Maven Central Plugin Repository</name>
-      <url>http://repo1.maven.org/maven2</url>
-      <layout>default</layout>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <releases>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-    </pluginRepository>
+<!--     <pluginRepository> -->
+<!--       <id>maven-central</id> -->
+<!--       <name>Maven Central Plugin Repository</name> -->
+<!--       <url>http://repo1.maven.org/maven2</url> -->
+<!--       <layout>default</layout> -->
+<!--       <snapshots> -->
+<!--         <enabled>false</enabled> -->
+<!--       </snapshots> -->
+<!--       <releases> -->
+<!--         <updatePolicy>never</updatePolicy> -->
+<!--       </releases> -->
+<!--     </pluginRepository> -->
     <pluginRepository>
       <id>mocca-joinup</id>
       <name>MOCCA JoinUp</name>
